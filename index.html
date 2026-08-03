@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!--
+    ============================================================
+    МЕТА-ИНФОРМАЦИЯ И НАСТРОЙКИ СТРАНИЦЫ
+    ============================================================
+    Кодировка UTF-8 — для корректного отображения кириллицы.
+    viewport — адаптивность на мобильных устройствах.
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Адвокат по уголовным делам в Калининградской области. Профессиональная защита на всех стадиях уголовного процесса.">
+  <title>Адвокат по уголовным делам — Калининградская область</title>
+
+  <!--
+    ============================================================
+    ПОДКЛЮЧЕНИЕ ШРИФТОВ
+    ============================================================
+    Inter — современный sans-serif для основного текста.
+    Playfair Display — элегантный serif для заголовков.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS-ПЕРЕМЕННЫЕ (ЦВЕТОВАЯ ПАЛИТРА И ОБЩИЕ НАСТРОЙКИ)
+       ============================================================
+       Тёмно-синий — основной фирменный цвет.
+       Золотой — акценты, кнопки, иконки.
+       Белый — фон контентных блоков и текст на тёмном фоне.
+    */
+    :root {
+      --color-primary: #0a1628;       /* Глубокий тёмно-синий */
+      --color-primary-light: #1a2d4a; /* Светлее для карточек на тёмном фоне */
+      --color-accent: #c9a227;        /* Золотой акцент */
+      --color-accent-hover: #dbb84a;  /* Золотой при наведении */
+      --color-white: #ffffff;
+      --color-gray-100: #f5f7fa;
+      --color-gray-200: #e8ecf1;
+      --color-gray-600: #5a6474;
+      --color-gray-800: #2d3748;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-sm: 0 2px 8px rgba(10, 22, 40, 0.08);
+      --shadow-md: 0 4px 20px rgba(10, 22, 40, 0.12);
+      --shadow-lg: 0 8px 40px rgba(10, 22, 40, 0.16);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --transition: 0.3s ease;
+      --container-width: 1140px;
+    }
+
+    /* ============================================================
+       СБРОС СТИЛЕЙ И БАЗОВЫЕ НАСТРОЙКИ
+       ============================================================ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Плавная прокрутка к якорям */
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-gray-800);
+      background-color: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Общий контейнер — ограничивает ширину контента */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Заголовки секций */
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-primary);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--color-gray-600);
+      max-width: 600px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+    }
+
+    /* Золотая декоративная линия под заголовком */
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--color-accent);
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       КНОПКИ
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    /* Основная золотая кнопка */
+    .btn--primary {
+      background: var(--color-accent);
+      color: var(--color-primary);
+    }
+
+    .btn--primary:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(201, 162, 39, 0.35);
+    }
+
+    /* Прозрачная кнопка с обводкой (для тёмного фона) */
+    .btn--outline {
+      background: transparent;
+      color: var(--color-white);
+      border: 2px solid var(--color-accent);
+    }
+
+    .btn--outline:hover {
+      background: var(--color-accent);
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       1. ШАПКА САЙТА (HEADER)
+       ============================================================ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 22, 40, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+      transition: box-shadow var(--transition);
+    }
+
+    .header--scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      max-width: var(--container-width);
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    /* Логотип / имя адвоката */
+    .header__brand {
+      flex-shrink: 0;
+    }
+
+    .header__name {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.3;
+    }
+
+    .header__specialty {
+      font-size: 0.8rem;
+      color: var(--color-accent);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .header__region {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Навигация (скрыта на мобильных, видна на десктопе) */
+    .header__nav {
+      display: none;
+    }
+
+    .header__nav-list {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .header__nav-link {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .header__nav-link:hover {
+      color: var(--color-accent);
+    }
+
+    /* Кнопка мобильного меню (гамбургер) */
+    .header__burger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .header__burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-white);
+      transition: all var(--transition);
+      border-radius: 2px;
+    }
+
+    /* Состояние открытого мобильного меню */
+    .header__burger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .header__burger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .header__burger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Мобильное выпадающее меню */
+    .header__mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-primary);
+      padding: 20px 24px 28px;
+      border-top: 1px solid rgba(201, 162, 39, 0.15);
+    }
+
+    .header__mobile-menu.open {
+      display: block;
+    }
+
+    .header__mobile-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .header__mobile-link {
+      color: var(--color-white);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      display: block;
+      padding: 8px 0;
+      transition: color var(--transition);
+    }
+
+    .header__mobile-link:hover {
+      color: var(--color-accent);
+    }
+
+    /* ============================================================
+       2. ГЛАВНЫЙ ЭКРАН (HERO)
+       ============================================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--color-primary) 0%, #0f2340 50%, var(--color-primary-light) 100%);
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px; /* Отступ под фиксированную шапку */
+    }
+
+    /* Декоративный паттерн на фоне */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(201, 162, 39, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      padding: 60px 0;
+    }
+
+    .hero__badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(201, 162, 39, 0.15);
+      border: 1px solid rgba(201, 162, 39, 0.3);
+      border-radius: 50px;
+      color: var(--color-accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero__title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    /* Золотое выделение части заголовка */
+    .hero__title-accent {
+      color: var(--color-accent);
+    }
+
+    .hero__text {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 40px;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ============================================================
+       3. РАЗДЕЛ «ОБО МНЕ»
+       ============================================================ */
+    .about {
+      padding: 100px 0;
+      background: var(--color-gray-100);
+    }
+
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* Декоративный блок с инициалами */
+    .about__visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about__avatar {
+      width: 280px;
+      height: 280px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .about__avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 2px solid var(--color-accent);
+      border-radius: calc(var(--radius-lg) + 4px);
+      opacity: 0.4;
+    }
+
+    .about__initials {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--color-accent);
+    }
+
+    .about__content p {
+      font-size: 1.05rem;
+      color: var(--color-gray-600);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    /* Список преимуществ в разделе «Обо мне» */
+    .about__list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    .about__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .about__item:hover {
+      transform: translateX(8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .about__item-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: rgba(201, 162, 39, 0.12);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+      font-size: 1.1rem;
+    }
+
+    .about__item-text {
+      font-weight: 500;
+      color: var(--color-gray-800);
+    }
+
+    /* ============================================================
+       4. РАЗДЕЛ «УСЛУГИ»
+       ============================================================ */
+    .services {
+      padding: 100px 0;
+      background: var(--color-white);
+    }
+
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    /* Карточка услуги */
+    .service-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Золотая полоска сверху карточки (появляется при наведении) */
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card__icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(10, 22, 40, 0.06);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      transition: background var(--transition);
+    }
+
+    .service-card:hover .service-card__icon {
+      background: rgba(201, 162, 39, 0.15);
+    }
+
+    .service-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+    }
+
+    .service-card__text {
+      font-size: 0.95rem;
+      color: var(--color-gray-600);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       5. РАЗДЕЛ «ПОЧЕМУ ВЫБИРАЮТ МЕНЯ»
+       ============================================================ */
+    .advantages {
+      padding: 100px 0;
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .advantages .section-title {
+      color: var(--color-white);
+    }
+
+    .advantages .section-subtitle {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .advantages__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+    }
+
+    .advantage-card {
+      text-align: center;
+      padding: 40px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(201, 162, 39, 0.15);
+      border-radius: var(--radius-md);
+      transition: all var(--transition);
+    }
+
+    .advantage-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+      border-color: rgba(201, 162, 39, 0.4);
+    }
+
+    .advantage-card__icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: rgba(201, 162, 39, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      transition: transform var(--transition);
+    }
+
+    .advantage-card:hover .advantage-card__icon {
+      transform: scale(1.1);
+    }
+
+    .advantage-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--color-accent);
+    }
+
+    .advantage-card__text {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       6. РАЗДЕЛ «КОНТАКТЫ»
+       ============================================================ */
+    .contacts {
+      padding: 100px 0;
+      background: var(--color-gray-100);
+    }
+
+    .contacts__wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Информационный блок слева */
+    .contacts__info {
+      text-align: center;
+    }
+
+    .contacts__info-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--color-gray-600);
+      font-size: 1rem;
+    }
+
+    .contacts__info-icon {
+      color: var(--color-accent);
+      font-size: 1.2rem;
+    }
+
+    /* Форма обратной связи */
+    .contact-form {
+      background: var(--color-white);
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-gray-800);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--color-gray-100);
+      color: var(--color-gray-800);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+      background: var(--color-white);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form .btn {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    /* Сообщение об успешной отправке формы */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      background: rgba(201, 162, 39, 0.12);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-sm);
+      color: var(--color-primary);
+      font-weight: 500;
+      margin-top: 16px;
+    }
+
+    .form-success.visible {
+      display: block;
+    }
+
+    /* ============================================================
+       7. ПОДВАЛ САЙТА (FOOTER)
+       ============================================================ */
+    .footer {
+      background: var(--color-primary);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer__text {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .footer__tagline {
+      font-size: 0.85rem;
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    .footer__copy {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ============================================================
+       АДАПТИВНОСТЬ — ПЛАНШЕТЫ И ДЕСКТОПЫ (от 768px)
+       ============================================================ */
+    @media (min-width: 768px) {
+      .header__nav {
+        display: block;
+      }
+
+      .header__burger {
+        display: none;
+      }
+
+      .header__mobile-menu {
+        display: none !important;
+      }
+
+      .about__grid {
+        grid-template-columns: 1fr 1.2fr;
+      }
+
+      .contacts__wrapper {
+        grid-template-columns: 1fr 1.2fr;
+        max-width: var(--container-width);
+      }
+
+      .contacts__info {
+        text-align: left;
+      }
+
+      .contacts__info-item {
+        justify-content: flex-start;
+      }
+    }
+
+    /* ============================================================
+       АДАПТИВНОСТЬ — КРУПНЫЕ ЭКРАНЫ (от 1024px)
+       ============================================================ */
+    @media (min-width: 1024px) {
+      .services__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       1. ШАПКА САЙТА
+       ============================================================ -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <!-- Блок с ФИО и специализацией -->
+      <div class="header__brand">
+        <div class="header__name">Иванов Сергей Петрович</div>
+        <div class="header__specialty">Адвокат по уголовным делам</div>
+        <div class="header__region">Калининградская область</div>
+      </div>
+
+      <!-- Навигация для десктопа -->
+      <nav class="header__nav" aria-label="Основная навигация">
+        <ul class="header__nav-list">
+          <li><a href="#about" class="header__nav-link">Обо мне</a></li>
+          <li><a href="#services" class="header__nav-link">Услуги</a></li>
+          <li><a href="#advantages" class="header__nav-link">Преимущества</a></li>
+          <li><a href="#contacts" class="header__nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <!-- Кнопка «Получить консультацию» -->
+      <a href="#contacts" class="btn btn--primary header__cta">Получить консультацию</a>
+
+      <!-- Кнопка мобильного меню -->
+      <button class="header__burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Мобильное выпадающее меню -->
+    <div class="header__mobile-menu" id="mobileMenu">
+      <ul class="header__mobile-list">
+        <li><a href="#about" class="header__mobile-link">Обо мне</a></li>
+        <li><a href="#services" class="header__mobile-link">Услуги</a></li>
+        <li><a href="#advantages" class="header__mobile-link">Преимущества</a></li>
+        <li><a href="#contacts" class="header__mobile-link">Контакты</a></li>
+      </ul>
+      <a href="#contacts" class="btn btn--primary" style="width: 100%;">Получить консультацию</a>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       2. ГЛАВНЫЙ ЭКРАН (HERO)
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__badge">Калининградская область</span>
+        <h1 class="hero__title">
+          Защита по уголовным делам.<br>
+          <span class="hero__title-accent">Профессиональная юридическая помощь.</span>
+        </h1>
+        <p class="hero__text">
+          Оказываю квалифицированную юридическую помощь на всех стадиях уголовного процесса —
+          от первого допроса до обжалования приговора. Ваша защита — мой профессиональный долг.
+        </p>
+        <div class="hero__actions">
+          <a href="#contacts" class="btn btn--primary">Получить консультацию</a>
+          <a href="#services" class="btn btn--outline">Мои услуги</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. РАЗДЕЛ «ОБО МНЕ»
+       ============================================================ -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">Обо мне</h2>
+      <p class="section-subtitle">Профессиональный адвокат с многолетним опытом защиты по уголовным делам</p>
+
+      <div class="about__grid">
+        <!-- Декоративный блок с инициалами -->
+        <div class="about__visual">
+          <div class="about__avatar">
+            <span class="about__initials">ИСП</span>
+          </div>
+        </div>
+
+        <!-- Текстовый блок с ключевыми фактами -->
+        <div class="about__content">
+          <p>
+            Я — адвокат по уголовным делам с более чем 10-летним стажем. Моя задача —
+            обеспечить надёжную правовую защиту каждому клиенту, используя глубокое знание
+            уголовного законодательства и судебной практики.
+          </p>
+
+          <ul class="about__list">
+            <li class="about__item">
+              <span class="about__item-icon">⚖️</span>
+              <span class="about__item-text">Опыт работы более 10 лет в сфере уголовного права</span>
+            </li>
+            <li class="about__item">
+              <span class="about__item-icon">🏛️</span>
+              <span class="about__item-text">Ранее — служба в органах прокуратуры</span>
+            </li>
+            <li class="about__item">
+              <span class="about__item-icon">🤝</span>
+              <span class="about__item-text">Индивидуальный подход к каждому делу</span>
+            </li>
+            <li class="about__item">
+              <span class="about__item-icon">🔒</span>
+              <span class="about__item-text">Строгое соблюдение адвокатской тайны</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. РАЗДЕЛ «УСЛУГИ»
+       ============================================================ -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <p class="section-subtitle">Комплексная юридическая помощь на всех этапах уголовного процесса</p>
+
+      <div class="services__grid">
+        <!-- Карточка 1 -->
+        <article class="service-card">
+          <div class="service-card__icon">🛡️</div>
+          <h3 class="service-card__title">Защита подозреваемых</h3>
+          <p class="service-card__text">
+            Представление интересов с момента задержания и первого допроса. Защита ваших прав на всех начальных стадиях.
+          </p>
+        </article>
+
+        <!-- Карточка 2 -->
+        <article class="service-card">
+          <div class="service-card__icon">⚔️</div>
+          <h3 class="service-card__title">Защита обвиняемых</h3>
+          <p class="service-card__text">
+            Квалифицированная защита после предъявления обвинения. Анализ доказательств и построение линии защиты.
+          </p>
+        </article>
+
+        <!-- Карточка 3 -->
+        <article class="service-card">
+          <div class="service-card__icon">🔍</div>
+          <h3 class="service-card__title">Участие в следственных действиях</h3>
+          <p class="service-card__text">
+            Присутствие при допросах, обысках, очных ставках и других следственных действиях.
+          </p>
+        </article>
+
+        <!-- Карточка 4 -->
+        <article class="service-card">
+          <div class="service-card__icon">🏛️</div>
+          <h3 class="service-card__title">Защита в суде</h3>
+          <p class="service-card__text">
+            Представительство в судах первой, апелляционной и кассационной инстанций.
+          </p>
+        </article>
+
+        <!-- Карточка 5 -->
+        <article class="service-card">
+          <div class="service-card__icon">📝</div>
+          <h3 class="service-card__title">Подготовка жалоб</h3>
+          <p class="service-card__text">
+            Составление и подача апелляционных, кассационных жалоб, ходатайств и других процессуальных документов.
+          </p>
+        </article>
+
+        <!-- Карточка 6 -->
+        <article class="service-card">
+          <div class="service-card__icon">💬</div>
+          <h3 class="service-card__title">Юридические консультации</h3>
+          <p class="service-card__text">
+            Первичная и углублённая консультация по вашей ситуации с оценкой перспектив дела.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. РАЗДЕЛ «ПОЧЕМУ ВЫБИРАЮТ МЕНЯ»
+       ============================================================ -->
+  <section class="advantages" id="advantages">
+    <div class="container">
+      <h2 class="section-title">Почему выбирают меня</h2>
+      <p class="section-subtitle">Ключевые преимущества работы с профессиональным адвокатом</p>
+
+      <div class="advantages__grid">
+        <!-- Преимущество 1: Опыт -->
+        <div class="advantage-card">
+          <div class="advantage-card__icon">⭐</div>
+          <h3 class="advantage-card__title">Опыт</h3>
+          <p class="advantage-card__text">
+            Более 10 лет практики в уголовном праве и знание работы правоохранительных органов изнутри.
+          </p>
+        </div>
+
+        <!-- Преимущество 2: Конфиденциальность -->
+        <div class="advantage-card">
+          <div class="advantage-card__icon">🔐</div>
+          <h3 class="advantage-card__title">Конфиденциальность</h3>
+          <p class="advantage-card__text">
+            Полное соблюдение адвокатской тайны. Вся информация строго конфиденциальна.
+          </p>
+        </div>
+
+        <!-- Преимущество 3: Оперативность -->
+        <div class="advantage-card">
+          <div class="advantage-card__icon">⚡</div>
+          <h3 class="advantage-card__title">Оперативность</h3>
+          <p class="advantage-card__text">
+            Быстрый выезд на место задержания и оперативная реакция в критических ситуациях.
+          </p>
+        </div>
+
+        <!-- Преимущество 4: Индивидуальный подход -->
+        <div class="advantage-card">
+          <div class="advantage-card__icon">🎯</div>
+          <h3 class="advantage-card__title">Индивидуальный подход</h3>
+          <p class="advantage-card__text">
+            Разработка уникальной стратегии защиты с учётом всех обстоятельств вашего дела.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. РАЗДЕЛ «КОНТАКТЫ»
+       ============================================================ -->
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <h2 class="section-title">Контакты</h2>
+      <p class="section-subtitle">Свяжитесь со мной для получения первичной консультации</p>
+
+      <div class="contacts__wrapper">
+        <!-- Контактная информация -->
+        <div class="contacts__info">
+          <div class="contacts__info-item">
+            <span class="contacts__info-icon">📍</span>
+            <span>Калининградская область</span>
+          </div>
+          <div class="contacts__info-item">
+            <span class="contacts__info-icon">📞</span>
+            <span>+7 (4012) 00-00-00</span>
+          </div>
+          <div class="contacts__info-item">
+            <span class="contacts__info-icon">✉️</span>
+            <span>advokat@example.ru</span>
+          </div>
+          <div class="contacts__info-item">
+            <span class="contacts__info-icon">🕐</span>
+            <span>Ежедневно, 24/7 — экстренные вызовы</span>
+          </div>
+        </div>
+
+        <!-- Форма обратной связи -->
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Описание ситуации</label>
+            <textarea id="message" name="message" placeholder="Кратко опишите вашу ситуацию..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Отправить заявку</button>
+
+          <!-- Сообщение об успешной отправке -->
+          <div class="form-success" id="formSuccess">
+            Спасибо! Ваша заявка принята. Я свяжусь с вами в ближайшее время.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       7. ПОДВАЛ САЙТА
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">Адвокат по уголовным делам в Калининградской области</p>
+      <p class="footer__tagline">Иванов Сергей Петрович</p>
+      <p class="footer__copy">&copy; 2026 Все права защищены</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT — ИНТЕРАКТИВНОСТЬ
+       ============================================================ -->
+  <script>
+    /* ----------------------------------------------------------
+       Мобильное меню: открытие/закрытие по клику на «гамбургер»
+       ---------------------------------------------------------- */
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
+    });
+
+    /* Закрытие мобильного меню при клике на ссылку */
+    document.querySelectorAll('.header__mobile-link, .header__mobile-menu .btn').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ----------------------------------------------------------
+       Тень у шапки при прокрутке страницы
+       ---------------------------------------------------------- */
+    const header = document.getElementById('header');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('header--scrolled');
+      } else {
+        header.classList.remove('header--scrolled');
+      }
+    });
+
+    /* ----------------------------------------------------------
+       Обработка формы обратной связи
+       (демонстрационная — без отправки на сервер)
+       ---------------------------------------------------------- */
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      /* Простая валидация полей */
+      if (!name || !phone || !message) {
+        alert('Пожалуйста, заполните все поля формы.');
+        return;
+      }
+
+      /* Показываем сообщение об успехе и сбрасываем форму */
+      formSuccess.classList.add('visible');
+      contactForm.reset();
+
+      /* Скрываем сообщение через 5 секунд */
+      setTimeout(() => {
+        formSuccess.classList.remove('visible');
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>
